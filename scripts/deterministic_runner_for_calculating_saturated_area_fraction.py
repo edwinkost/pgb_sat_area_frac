@@ -228,9 +228,9 @@ class DeterministicRunner(DynamicModel):
             pristineAreaFrac = pcr.spatial(pcr.scalar(0.0))
             for coverType in self.coverTypes:         
                 if not coverType.startswith('irr'):
-                    self.fracVegCover[coverType] = 0.0
-                    self.fracVegCover[coverType] = self.naturalFracVegCover[coverType] * lcFrac
-                    pristineAreaFrac             = pcr.cover(self.fracVegCover[coverType], 0.0)
+                    self.fracVegCover[coverType]  = 0.0
+                    self.fracVegCover[coverType]  = self.naturalFracVegCover[coverType] * lcFrac
+                    pristineAreaFrac             += pcr.cover(self.fracVegCover[coverType], 0.0)
 		    
             # check and make sure that totalArea = 1.0 for all cells
             totalArea += pristineAreaFrac
@@ -364,7 +364,7 @@ def main():
     model_setup["start_date"] = "1960-01-31"
     model_setup["end_date"]   = "2019-12-31"
 
-    model_setup["output_dir"] = "/scratch-shared/otoo0001/test_sat_area_frac/test/"
+    model_setup["output_dir"] = "/scratch-shared/otoo0001/test_sat_area_frac/test_original/"
 
     model_setup["saturated_area_fraction_output_file"] = model_setup["output_dir"] + "/" + "estimateSatAreaFrac_monthAvg_" + model_setup["start_date"] + "_to_" + model_setup["end_date"] + ".nc"
 
